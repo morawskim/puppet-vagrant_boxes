@@ -14,11 +14,13 @@ Puppet::Type::newtype(:vagrant_box) do
         end
     end
     
-    newparam(:provider) do
-        desc "The provider"
-        
-        #todo enum validate
-        #validate
+    newparam(:box_provider) do
+      # @type self [Puppet::Parameter]
+      desc "The provider"
+      defaultto 'virtualbox'
+
+      #todo enum validate
+      #validate
     end
     
     newparam(:version) do
@@ -26,4 +28,3 @@ Puppet::Type::newtype(:vagrant_box) do
         #todo validate as in package type
     end
 end
-
