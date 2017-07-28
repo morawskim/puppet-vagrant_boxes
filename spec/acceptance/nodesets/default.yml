@@ -1,0 +1,17 @@
+HOSTS:
+  opensuse-422-x64:
+    roles:
+      - default
+    platform: sles-42.2-x86_64
+    hypervisor: vagrant
+    box: morawskim/openSUSE-42.2-x86_64
+    box_version: 1.0.1
+CONFIG:
+  type: foss
+#HOSTS:
+#  ubuntu-12-04:
+#    platform: ubuntu-12.04-x64
+#    image: solarkennedy/ubuntu-12.04-puppet
+#    hypervisor: docker
+#CONFIG:
+#  type: foss

@@ -1,7 +1,11 @@
 Puppet::Type.type(:vagrant_box).provide(:vagrant) do
   desc "Vagrant provide for vagrant_box"
 
-  commands :vagrantcmd => "vagrant"
+  has_command(:vagrantcmd, 'vagrant') do
+    #Puppet::Provider::CommandDefiner
+    environment :HOME => '/root'
+  end
+
 
   def create
     #vagrant box add --box-version VALUE --provider PROVIDER hashicorp/precise64

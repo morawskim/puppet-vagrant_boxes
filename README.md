@@ -77,3 +77,12 @@ know what the ground rules for contributing are.
 If you aren't using changelog, put your release notes here (though you should
 consider using changelog). You may also add any additional sections you feel are
 necessary or important to include here. Please use the `## ` header.
+
+
+
+bundle exec rspec spec/acceptance
+
+BEAKER_debug=y BEAKER_destroy=no BEAKER_provision=yes  bundle exec rspec spec/acceptance
+BEAKER_debug=y BEAKER_destroy=no BEAKER_provision=no  bundle exec rspec spec/acceptance
+
+#host.exec(Command.new("sudo sed -i '' 's/#PermitRootLogin yes/PermitRootLogin Yes/g' /etc/sshd_config"))

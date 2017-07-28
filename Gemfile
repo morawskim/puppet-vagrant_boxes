@@ -5,3 +5,9 @@ gem 'puppet', puppetversion
 gem 'puppetlabs_spec_helper', '>= 0.1.0'
 gem 'puppet-lint', '>= 0.3.2'
 gem 'facter', '>= 1.7.0'
+
+group :development, :test do
+  gem 'beaker', '< 3', :require => false
+  gem 'beaker-rspec', :require => false
+  gem 'byebug'
+end
