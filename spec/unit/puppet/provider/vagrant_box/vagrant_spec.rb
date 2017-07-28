@@ -102,6 +102,13 @@ describe Puppet::Type.type(:vagrant_box).provider(:vagrant) do
       expect(result).to be_falsey
     end
 
+    it 'with empty box list' do
+      resource[:version] = 'X.Y.Z'
+      provider.stubs(:vagrantcmd).returns(my_fixture_read('boxes_list_empty'))
+      result = provider.exists?
+      expect(result).to be_falsey
+    end
+
     it 'with correct box version' do
       resource[:version] = '20170112.0.0'
       provider.stubs(:vagrantcmd).returns(my_fixture_read('boxes_list'))

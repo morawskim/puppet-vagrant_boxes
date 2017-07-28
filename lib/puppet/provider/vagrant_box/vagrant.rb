@@ -50,6 +50,8 @@ Puppet::Type.type(:vagrant_box).provide(:vagrant) do
       line = l.strip
       name, info = line.split(' ', 2)
       match_data = info.match(/([a-zA-Z]+),\s+([\d\.]+)/)
+      next if match_data.nil?
+
       provider, version = match_data.captures
       unless boxes.has_key? name
         boxes[name] = []
