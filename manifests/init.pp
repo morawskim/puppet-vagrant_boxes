@@ -35,7 +35,11 @@
 #
 # Copyright 2017 Your name here, unless otherwise noted.
 #
-class vagrant_boxes {
+class vagrant_boxes(
+  $version = $::vagrant_boxes::install::version
+) {
 
-
+  class { 'vagrant_boxes::install':
+    version => $version
+  }
 }

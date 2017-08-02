@@ -1,9 +1,32 @@
-class vagrabt_boxes::install(
+class vagrant_boxes::install(
   $version = '1.9.7'
 ) {
-  #https://releases.hashicorp.com/vagrant/1.9.7/vagrant_1.9.7_x86_64.deb?_ga=2.191976675.831467532.1501152986-651242565.1501152986
-  #https://releases.hashicorp.com/vagrant/1.9.7/vagrant_1.9.7_i686.deb?_ga=2.191976675.831467532.1501152986-651242565.1501152986
+  $base_url = 'https://releases.hashicorp.com/vagrant'
 
-  #https://releases.hashicorp.com/vagrant/1.9.7/vagrant_1.9.7_i686.rpm?_ga=2.191976675.831467532.1501152986-651242565.1501152986
-  #https://releases.hashicorp.com/vagrant/1.9.7/vagrant_1.9.7_x86_64.rpm?_ga=2.22428402.831467532.1501152986-651242565.1501152986
+  case $::operatingsystem {
+    'opensuse': {
+      case $::architecture {
+        'x86_64', 'amd64': {
+          $vagrant_source = "${base_url}/${version}/vagrant_${version}_x86_64.rpm"
+          $vagrant_provider = 'rpm'
+        }
+        'i386': {
+          $vagrant_source = "${base_url}/${version}/vagrant_${version}_i686.rpm"
+          $vagrant_provider = 'rpm'
+        }
+        default: {
+          fail("Unrecognized architecture: ${::architecture} on ${::operatingsystem}")
+        }
+      }
+    }
+    default: {
+      fail("Unrecognized operating system: ${::operatingsystem}")
+    }
+  }
+
+  package { "vagrant":
+    ensure   => present,
+    provider => $vagrant_provider,
+    source   => $vagrant_source
+  }
 }
