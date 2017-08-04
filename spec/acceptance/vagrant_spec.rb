@@ -4,6 +4,7 @@ describe 'vagrant box' do
 
   let :pp do
     <<-EOS
+      class { 'vagrant_boxes': }
       vagrant_box{'ubuntu/trusty64':
         ensure => present,
       }
