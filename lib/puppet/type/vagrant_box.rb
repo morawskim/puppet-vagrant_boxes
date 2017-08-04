@@ -3,6 +3,8 @@ Puppet::Type::newtype(:vagrant_box) do
 
     ensurable
 
+    autorequire(:class) { 'vagrant_boxes' }
+
     newparam(:name) do
         desc "The vagrant box's name"
 
