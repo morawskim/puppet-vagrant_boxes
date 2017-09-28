@@ -24,4 +24,16 @@ describe 'vagrant box' do
     result = apply_manifest(pp, :catch_failures => true)
     expect(result.exit_code).to eq 0
   end
+
+  context 'with vagrant_home fact' do
+    it '' do
+
+    end
+
+    it 'and overwrite in type' do
+
+    end
+
+  end
+
 end
